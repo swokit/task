@@ -6,17 +6,16 @@
  * Time: 下午8:06
  */
 
-namespace SwooleLib\Task;
+namespace SwooleLib\Task\CronTab;
 
 /**
  * Class CronTabManager
- * @package SwooleLib\Task
+ * @package SwooleLib\Task\CronTab
  *
  * @ref https://github.com/jobbyphp/jobby/blob/master/src/Jobby.php
  */
 class CronTabManager
 {
-
     /**
      * @param string $job
      * @param array  $config

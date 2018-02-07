@@ -6,14 +6,14 @@
  * Time: 下午7:31
  */
 
-namespace SwooleLib\Task;
+namespace SwooleLib\Task\CronTab;
 
 use Inhere\Library\Helpers\PhpHelper;
 use Inhere\Library\Helpers\Sys;
 
 /**
  * Class CronTabTask
- * @package SwooleLib\Task
+ * @package SwooleLib\Task\CronTab
  */
 class CronTabTask
 {

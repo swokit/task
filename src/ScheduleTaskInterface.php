@@ -9,10 +9,10 @@
 namespace SwooleLib\Task;
 
 /**
- * Class ScheduleTask
+ * interface ScheduleTaskInterface
  * @package SwooleLib\Task
  */
-abstract class ScheduleTask extends BaseTask implements ScheduleTaskInterface
+interface ScheduleTaskInterface extends TaskInterface
 {
 
 }

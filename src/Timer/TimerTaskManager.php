@@ -6,14 +6,13 @@
  * Time: 11:23
  */
 
-namespace SwooleLib\Task;
+namespace SwooleLib\Task\Timer;
 
-use Inhere\Library\Helpers\Obj;
 use Inhere\Library\Helpers\PhpHelper;
 
 /**
  * Class TimerTaskManager - Timed Task Manager, Schedule Task
- * @package SwooleLib\Task
+ * @package SwooleLib\Task\Timer
  * @link https://wiki.swoole.com/wiki/page/244.html
  */
 class TimerTaskManager
@@ -65,7 +64,15 @@ class TimerTaskManager
      */
     public function __construct(array $config = [])
     {
-        Obj::smartConfigure($this, $config);
+        foreach ($config as $name => $value) {
+            $setter = 'set' . ucfirst($name);
+
+            if (\method_exists($this, $setter)) {
+                $this->$setter($value);
+            } elseif (\property_exists($this, $name)) {
+                $this->$name = $value;
+            }
+        }
     }
 
     /**
@@ -77,8 +84,9 @@ class TimerTaskManager
      * @param int $times
      * @return $this
      */
-    public function tick(string $name, int $timeMs, callable $handler, array $params = [], int $times = self::FOREVER)
-    {
+    public function tick(
+        string $name, int $timeMs, callable $handler, array $params = [], int $times = self::FOREVER
+    ) {
         return $this->add($name, $timeMs, $handler, $params, $times);
     }
 
@@ -111,7 +119,9 @@ class TimerTaskManager
      *  >0 run defined times, then stop it. 需要执行的次数
      * @return $this
      */
-    public function add(string $name, int $timeMs, callable $handler, array $params = [], int $times = self::FOREVER)
+    public function add(
+        string $name, int $timeMs, callable $handler, array $params = [], int $times = self::FOREVER
+    )
     {
         if ($this->has($name)) {
             throw new \InvalidArgumentException("The timer [$name] has been exists!");
@@ -160,7 +170,7 @@ class TimerTaskManager
             $runTimes = $this->runTimes[$timerId];
 
             if ($runTimes >= $maxTimes) {
-//                $this->timers[$name][self::IDX_TIMES] = self::STOPPED;
+                // $this->timers[$name][self::IDX_TIMES] = self::STOPPED;
                 $this->clear($name);
 
                 return true;
@@ -211,7 +221,7 @@ class TimerTaskManager
      * @param int $id
      * @return string|null
      */
-    public function getTimerName(int $id) : string
+    public function getTimerName(int $id): string
     {
         return $this->idNames[$id] ?? '';
     }

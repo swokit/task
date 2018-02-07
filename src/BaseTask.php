@@ -9,10 +9,10 @@
 namespace SwooleLib\Task;
 
 /**
- * Class TimerTask
+ * Class BaseTask
  * @package SwooleLib\Task
  */
-abstract class TimerTask implements TaskInterface
+abstract class BaseTask implements TaskInterface
 {
     /**
      * @param array $args
@@ -27,7 +27,7 @@ abstract class TimerTask implements TaskInterface
     public function run(array $args)
     {
         $this->beforeRun($args);
-        $this->doRun($args);
+        $this->exec($args);
         $this->afterRun($args);
     }
 
@@ -35,7 +35,7 @@ abstract class TimerTask implements TaskInterface
      * @param array $args
      * @return mixed
      */
-    abstract public function doRun(array $args);
+    abstract public function exec(array $args);
 
     /**
      * @param array $args
