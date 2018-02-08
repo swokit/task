@@ -71,11 +71,6 @@ class TimerManager extends AbstractManager
         $this->startTime = round(microtime(1) * 1000);
     }
 
-    public function addTask($definition)
-    {
-        // TODO: Implement addTask() method.
-    }
-
     /**
      * add a tick timer 添加一个循环定时任务
      * @param string $name
@@ -147,6 +142,9 @@ class TimerManager extends AbstractManager
         return $this;
     }
 
+    /**
+     * @param TimerTaskInterface $task
+     */
     public function addTimer(TimerTaskInterface $task)
     {
         $this->tasks[$task->getName()] = $task;

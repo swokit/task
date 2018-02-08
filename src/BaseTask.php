@@ -49,9 +49,19 @@ abstract class BaseTask implements TaskInterface
      */
     public function run(array $args = [])
     {
-        $this->beforeRun($args);
-        $this->exec($args);
-        $this->afterRun($args);
+        $result = null;
+
+        try {
+            if (false !== $this->beforeRun($args)) {
+                $result = $this->exec($args);
+
+                $this->afterRun($result);
+            }
+        } catch (\Throwable $e) {
+            $this->onException($e);
+        }
+
+        return $result;
     }
 
     /**
@@ -65,6 +75,14 @@ abstract class BaseTask implements TaskInterface
      */
     public function afterRun(array $args)
     {
+    }
+
+    /**
+     * @param \Throwable $e
+     */
+    protected function onException(\Throwable $e)
+    {
+        // log error
     }
 
     /**

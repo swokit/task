@@ -53,11 +53,15 @@ abstract class AbstractManager implements ManagerInterface
     public function addTask($definition)
     {
         if (\is_object($definition)) {
-            if (!$definition instanceof static::$taskInterface) {
-                $definition = new CallbackTask($definition);
+            if ($definition instanceof static::$taskInterface) {
+                $this->tasks[$definition->getName()] = $definition;
+            } elseif (\is_callable($definition)) {
+                $task = clone $this->basicTask;
+                $task->setCallback($definition);
+
+                $this->tasks[$task->getName()] = $task;
             }
 
-            $this->tasks[$definition->getName()] = $definition;
             return;
         }
 
@@ -87,6 +91,25 @@ abstract class AbstractManager implements ManagerInterface
         if ($task instanceof static::$taskInterface) {
             $this->tasks[$task->getName()] = $task;
         }
+    }
+
+    /**
+     * @param mixed $callback
+     * @return string
+     */
+    public function generateName($callback): string
+    {
+        if (\is_string($callback)) {
+            $name = $callback;
+        } elseif (\is_object($callback)) {
+            $name = spl_object_hash($callback);
+        } elseif (\is_array($callback)) {
+            $name = implode(':', $callback);
+        } else {
+            throw new \InvalidArgumentException('Invalid param for create callback task');
+        }
+
+        return $name;
     }
 
     /**

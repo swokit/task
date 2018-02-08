@@ -17,6 +17,11 @@ use SwooleLib\Task\BaseTask;
 abstract class TimerTask extends BaseTask implements TimerTaskInterface
 {
     /**
+     * @var int The timer id
+     */
+    protected $id = -1;
+
+    /**
      * @var int
      */
     protected $times = self::FOREVER;
@@ -66,5 +71,21 @@ abstract class TimerTask extends BaseTask implements TimerTaskInterface
     public function setInterval(int $interval)
     {
         $this->interval = $interval;
+    }
+
+    /**
+     * @return int
+     */
+    public function getId(): int
+    {
+        return $this->id;
+    }
+
+    /**
+     * @param int $id
+     */
+    public function setId(int $id)
+    {
+        $this->id = $id;
     }
 }

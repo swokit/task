@@ -33,3 +33,9 @@ spl_autoload_register(function ($class) use ($map) {
 function include_file($file) {
 	include $file;
 }
+
+if (file_exists($file = dirname(__DIR__, 3) . '/autoload.php')) {
+    require $file;
+} elseif (file_exists($file = dirname(__DIR__) . '/vendor/autoload.php')) {
+    require $file;
+}

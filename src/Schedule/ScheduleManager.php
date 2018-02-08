@@ -25,11 +25,6 @@ class ScheduleManager extends AbstractManager
      */
     private $timerId = -1;
 
-    public function __construct(array $config = [])
-    {
-        parent::__construct($config);
-    }
-
     public function __destruct()
     {
         if ($this->timerId > -1) {
@@ -63,9 +58,13 @@ class ScheduleManager extends AbstractManager
 
     public function startWithPcntl()
     {
+        pcntl_signal(SIGALRM, $handler);
+
+
         while (true) {
             pcntl_signal_dispatch();
 
+            $this->dispatch();
         }
     }
 
