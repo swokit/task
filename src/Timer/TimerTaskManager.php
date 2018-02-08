@@ -9,13 +9,14 @@
 namespace SwooleLib\Task\Timer;
 
 use Inhere\Library\Helpers\PhpHelper;
+use SwooleLib\Task\ManagerInterface;
 
 /**
  * Class TimerTaskManager - Timed Task Manager, Schedule Task
  * @package SwooleLib\Task\Timer
  * @link https://wiki.swoole.com/wiki/page/244.html
  */
-class TimerTaskManager
+class TimerTaskManager implements ManagerInterface
 {
     const IDX_ID = 0;
     const IDX_HANDLER = 1;

@@ -82,3 +82,7 @@ crontab 文件中每行的每个字段代表一项设置，它的格式共分为
    - eg `6#3` 或者 `FRI#3` : 在每周（day-of-week）中表示“每月第三个星期五”
 
 > 表达式参考链接：https://www.jianshu.com/p/f03b1497122a
+
+## ref
+
+- `"mtdowling/cron-expression": "^1.2"` 一个cronTab表达式解析库

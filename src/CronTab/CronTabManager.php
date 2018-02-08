@@ -8,13 +8,15 @@
 
 namespace SwooleLib\Task\CronTab;
 
+use SwooleLib\Task\ManagerInterface;
+
 /**
  * Class CronTabManager
  * @package SwooleLib\Task\CronTab
  *
  * @ref https://github.com/jobbyphp/jobby/blob/master/src/Jobby.php
  */
-class CronTabManager
+class CronTabManager implements ManagerInterface
 {
     /**
      * @param string $job
