@@ -15,6 +15,29 @@ namespace SwooleLib\Task;
 abstract class BaseTask implements TaskInterface
 {
     /**
+     * @var string
+     */
+    protected $name;
+
+    /**
+     * @param array $config
+     * @return static
+     */
+    public static function fromArray(array $config)
+    {
+        return new static($config);
+    }
+
+    /**
+     * BaseTask constructor.
+     * @param array $config
+     */
+    public function __construct(array $config = [])
+    {
+        TaskHelper::initObject($this, $config);
+    }
+
+    /**
      * @param array $args
      */
     public function beforeRun(array $args)
@@ -42,5 +65,21 @@ abstract class BaseTask implements TaskInterface
      */
     public function afterRun(array $args)
     {
+    }
+
+    /**
+     * @return string
+     */
+    public function getName(): string
+    {
+        return $this->name;
+    }
+
+    /**
+     * @param string $name
+     */
+    public function setName(string $name)
+    {
+        $this->name = $name;
     }
 }

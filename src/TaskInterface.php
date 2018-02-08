@@ -15,6 +15,11 @@ namespace SwooleLib\Task;
 interface TaskInterface
 {
     /**
+     * @return string
+     */
+    public function getName(): string;
+
+    /**
      * @param array $args
      * @return mixed
      */

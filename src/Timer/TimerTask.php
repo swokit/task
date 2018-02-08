@@ -16,4 +16,55 @@ use SwooleLib\Task\BaseTask;
  */
 abstract class TimerTask extends BaseTask implements TimerTaskInterface
 {
+    /**
+     * @var int
+     */
+    protected $times = self::FOREVER;
+
+    /**
+     * @var int The timer interval time.(unit: ms)
+     */
+    protected $interval = 1000;
+
+    /**
+     * @return $this
+     */
+    public function forever(): TimerTask
+    {
+        $this->times = self::FOREVER;
+
+        return $this;
+    }
+
+    /**
+     * @return int
+     */
+    public function getTimes(): int
+    {
+        return $this->times;
+    }
+
+    /**
+     * @param int $times
+     */
+    public function setTimes(int $times)
+    {
+        $this->times = $times;
+    }
+
+    /**
+     * @return int
+     */
+    public function getInterval(): int
+    {
+        return $this->interval;
+    }
+
+    /**
+     * @param int $interval
+     */
+    public function setInterval(int $interval)
+    {
+        $this->interval = $interval;
+    }
 }

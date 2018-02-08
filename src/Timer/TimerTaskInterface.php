@@ -16,5 +16,10 @@ use SwooleLib\Task\TaskInterface;
  */
 interface TimerTaskInterface extends TaskInterface
 {
+    const FOREVER = -1;
 
+    /**
+     * @return int
+     */
+    public function getTimes(): int;
 }

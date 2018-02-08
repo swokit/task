@@ -8,8 +8,8 @@
 
 namespace SwooleLib\Task\Schedule;
 
-use Inhere\Library\Helpers\Sys;
 use SwooleLib\Task\BaseTask;
+use SwooleLib\Task\TaskHelper;
 
 /**
  * Class ScheduleTask
@@ -17,9 +17,14 @@ use SwooleLib\Task\BaseTask;
  */
 class ScheduleTask extends BaseTask implements ScheduleTaskInterface
 {
+    /**
+     * @var bool
+     */
     private $enabled = true;
 
     /**
+     * schedule expression
+     *
      * format:
      *  '0 * * * *'
      * or
@@ -44,6 +49,9 @@ class ScheduleTask extends BaseTask implements ScheduleTaskInterface
      */
     private $command;
 
+    /**
+     * @var array
+     */
     protected $options = [
         'jobClass'       => 'Jobby\BackgroundJob',
         'recipients'     => null,
@@ -66,17 +74,78 @@ class ScheduleTask extends BaseTask implements ScheduleTaskInterface
         'debug'          => false,
     ];
 
+    /**
+     * @param \Closure|string $schedule
+     * @return ScheduleTask
+     */
+    public function setSchedule($schedule): self
+    {
+        $this->schedule = $schedule;
+
+        return $this;
+    }
+
+    /**
+     * @return \Closure|string
+     */
+    public function getSchedule()
+    {
+        return $this->schedule;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isEnabled(): bool
+    {
+        return $this->enabled;
+    }
+
+    /**
+     * @param bool $enabled
+     * @return ScheduleTask
+     */
+    public function setEnabled(bool $enabled): self
+    {
+        $this->enabled = $enabled;
+
+        return $this;
+    }
+
+    /**
+     * @param mixed $command
+     * @return ScheduleTask
+     */
+    public function setCommand($command): self
+    {
+        $this->command = $command;
+
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getCommand()
+    {
+        return $this->command;
+    }
+
+    /**
+     * @throws \RuntimeException
+     */
     protected function runFile()
     {
         // Start execution. Run in foreground (will block).
         $user = $this->options['runUser'];
         $command = $this->options['command'];
 
-        Sys::exec($command, $this->getLogfile(), $user);
+        TaskHelper::exec($command, $this->getLogfile(), $user);
     }
 
     /**
      * @return string
+     * @throws \RuntimeException
      */
     protected function getLogfile()
     {
@@ -87,7 +156,7 @@ class ScheduleTask extends BaseTask implements ScheduleTaskInterface
         $logs = \dirname($logfile);
 
         if (!file_exists($logs)) {
-            mkdir($logs, 0755, true);
+            TaskHelper::mkdir($logs, 0755);
         }
 
         return $logfile;

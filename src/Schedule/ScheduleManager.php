@@ -8,7 +8,9 @@
 
 namespace SwooleLib\Task\CronTab;
 
-use SwooleLib\Task\ManagerInterface;
+use Swoole\Timer;
+use SwooleLib\Task\AbstractManager;
+use SwooleLib\Task\TaskHelper;
 
 /**
  * Class ScheduleManager
@@ -16,8 +18,80 @@ use SwooleLib\Task\ManagerInterface;
  *
  * @ref https://github.com/jobbyphp/jobby/blob/master/src/Jobby.php
  */
-class ScheduleManager implements ManagerInterface
+class ScheduleManager extends AbstractManager
 {
+    /**
+     * @var int
+     */
+    private $timerId = -1;
+
+    public function __construct(array $config = [])
+    {
+        parent::__construct($config);
+    }
+
+    public function __destruct()
+    {
+        if ($this->timerId > -1) {
+            Timer::clear($this->timerId);
+            $this->timerId = -1;
+        }
+    }
+
+    public function start()
+    {
+        if (TaskHelper::hasSwoole()) {
+            $this->startWithSwoole();
+        } elseif (TaskHelper::hasPcntl()) {
+            $this->startWithPcntl();
+        } else {
+            $this->startWithRaw();
+        }
+    }
+
+    protected function startWithSwoole($wait = true)
+    {
+        // add a timer,
+        $this->timerId = Timer::tick(1, function (){
+            $this->dispatch();
+        });
+
+        if ($wait) {
+            swoole_event_wait();
+        }
+    }
+
+    public function startWithPcntl()
+    {
+        while (true) {
+            pcntl_signal_dispatch();
+
+        }
+    }
+
+    public function startWithRaw()
+    {
+        while (true) {
+            $this->dispatch();
+        }
+    }
+
+    /**
+     * dispatch schedule task
+     */
+    public function dispatch()
+    {
+
+    }
+
+    /**
+     * @return int
+     */
+    public function getTimerId(): int
+    {
+        return $this->timerId;
+    }
+
     /**
      * @param string $job
      * @param array  $config
@@ -43,5 +117,15 @@ class ScheduleManager implements ManagerInterface
         $command = $this->getExecutableCommand($job, $config);
 
         pclose(popen("start \"blah\" /B \"$binary\" $command", 'r'));
+    }
+
+    private function getPhpBinary()
+    {
+        return 'php';
+    }
+
+    private function getExecutableCommand($job, $config): string
+    {
+        return '';
     }
 }

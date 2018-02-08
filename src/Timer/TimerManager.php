@@ -8,15 +8,15 @@
 
 namespace SwooleLib\Task\Timer;
 
+use SwooleLib\Task\AbstractManager;
 use SwooleLib\Task\TaskHelper;
-use SwooleLib\Task\ManagerInterface;
 
 /**
  * Class TimerManager - Timed Task Manager, Schedule Task
  * @package SwooleLib\Task\Timer
  * @link https://wiki.swoole.com/wiki/page/244.html
  */
-class TimerManager implements ManagerInterface
+class TimerManager extends AbstractManager
 {
     const IDX_ID = 0;
     const IDX_HANDLER = 1;
@@ -62,20 +62,18 @@ class TimerManager implements ManagerInterface
     private $dispatchMode = 1;
 
     /**
-     * class constructor.
-     * @param array $config
+     * @var int Start time(unit: ms)
      */
-    public function __construct(array $config = [])
-    {
-        foreach ($config as $name => $value) {
-            $setter = 'set' . ucfirst($name);
+    protected $startTime = 0;
 
-            if (\method_exists($this, $setter)) {
-                $this->$setter($value);
-            } elseif (\property_exists($this, $name)) {
-                $this->$name = $value;
-            }
-        }
+    public function start()
+    {
+        $this->startTime = round(microtime(1) * 1000);
+    }
+
+    public function addTask($definition)
+    {
+        // TODO: Implement addTask() method.
     }
 
     /**
@@ -86,6 +84,7 @@ class TimerManager implements ManagerInterface
      * @param array $params
      * @param int $times
      * @return $this
+     * @throws \InvalidArgumentException
      */
     public function tick(
         string $name, int $timeMs, callable $handler, array $params = [], int $times = self::FOREVER
@@ -100,6 +99,7 @@ class TimerManager implements ManagerInterface
      * @param callable $handler
      * @param array $params
      * @return $this
+     * @throws \InvalidArgumentException
      */
     public function after(string $name, int $timeMs, callable $handler, array $params = [])
     {
@@ -121,6 +121,7 @@ class TimerManager implements ManagerInterface
      *  0  stopped. 此定时任务暂时被停止执行
      *  >0 run defined times, then stop it. 需要执行的次数
      * @return $this
+     * @throws \InvalidArgumentException
      */
     public function add(
         string $name, int $timeMs, callable $handler, array $params = [], int $times = self::FOREVER
@@ -144,6 +145,11 @@ class TimerManager implements ManagerInterface
         }
 
         return $this;
+    }
+
+    public function addTimer(TimerTaskInterface $task)
+    {
+        $this->tasks[$task->getName()] = $task;
     }
 
     /**
@@ -304,4 +310,5 @@ class TimerManager implements ManagerInterface
     {
         $this->dispatchMode = $dispatchMode;
     }
+
 }

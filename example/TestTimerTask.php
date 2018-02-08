@@ -14,7 +14,7 @@ use SwooleLib\Task\Timer\TimerTask;
  * Class TimerTask
  * @package SwooleLib\Task\Timer
  */
-class TimerTask extends TimerTask
+class TestTimerTask extends TimerTask
 {
     public function exec(array $args)
     {

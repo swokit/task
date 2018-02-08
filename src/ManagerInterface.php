@@ -8,10 +8,13 @@
 
 namespace SwooleLib\Task;
 
+use Psr\Log\LoggerAwareInterface;
+
 /**
  * Interface ManagerInterface
  * @package SwooleLib\Task
  */
-interface ManagerInterface
+interface ManagerInterface extends LoggerAwareInterface
 {
+    public function start();
 }

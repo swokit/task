@@ -1,10 +1,10 @@
 # task
 
-任务我看来有三个 
+这里将任务分为三类： 
 
-- swoole的异步任务 
+- swoole的异步工作任务 
 - timer的定时任务 
-- 类似cron的计划任务
+- 类似cronTab的计划任务
 
 ## work task
 
@@ -14,7 +14,7 @@ swoole的异步工作任务
 
 定时任务
 
-## Schedule Task(linux cronTab)
+## Schedule Task(cronTab)
 
 计划任务，类似Linux的cronTab,但是最小精度支持到秒
 
@@ -30,7 +30,6 @@ swoole的异步工作任务
  |     +----------- min (0 - 59)
  +------------- sec (0-59)
 ```
-
 
 ### crontab 计划任务表达式
 

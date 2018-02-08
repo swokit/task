@@ -13,7 +13,8 @@
     }
   ],
   "require": {
-    "php": ">7.0.0"
+    "php": ">7.0.0",
+    "psr/log": "^1.0"
   },
   "autoload": {
     "psr-4": {
@@ -21,6 +22,7 @@
     }
   },
   "suggest": {
-    "ext-swoole": "The swoole extension is required for running"
+    "ext-swoole": "The swoole extension is required for running",
+    "inhere/console": "the console application library"
   }
 }
