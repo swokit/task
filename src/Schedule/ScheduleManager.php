@@ -11,12 +11,12 @@ namespace SwooleLib\Task\CronTab;
 use SwooleLib\Task\ManagerInterface;
 
 /**
- * Class CronTabManager
- * @package SwooleLib\Task\CronTab
+ * Class ScheduleManager
+ * @package SwooleLib\Task\Schedule
  *
  * @ref https://github.com/jobbyphp/jobby/blob/master/src/Jobby.php
  */
-class CronTabManager implements ManagerInterface
+class ScheduleManager implements ManagerInterface
 {
     /**
      * @param string $job
@@ -42,6 +42,6 @@ class CronTabManager implements ManagerInterface
         $binary = $this->getPhpBinary();
         $command = $this->getExecutableCommand($job, $config);
 
-        pclose(popen("start \"blah\" /B \"$binary\" $command", "r"));
+        pclose(popen("start \"blah\" /B \"$binary\" $command", 'r'));
     }
 }

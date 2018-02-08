@@ -8,6 +8,8 @@
 
 namespace SwooleLib\Task\Work;
 
+use SwooleLib\Task\TaskInterface;
+
 /**
  * interface WorkTaskInterface
  * @package SwooleLib\Task\Work

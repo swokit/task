@@ -8,15 +8,15 @@
 
 namespace SwooleLib\Task\Timer;
 
-use Inhere\Library\Helpers\PhpHelper;
+use SwooleLib\Task\TaskHelper;
 use SwooleLib\Task\ManagerInterface;
 
 /**
- * Class TimerTaskManager - Timed Task Manager, Schedule Task
+ * Class TimerManager - Timed Task Manager, Schedule Task
  * @package SwooleLib\Task\Timer
  * @link https://wiki.swoole.com/wiki/page/244.html
  */
-class TimerTaskManager implements ManagerInterface
+class TimerManager implements ManagerInterface
 {
     const IDX_ID = 0;
     const IDX_HANDLER = 1;
@@ -43,12 +43,14 @@ class TimerTaskManager implements ManagerInterface
     private $timers = [];
 
     /**
-     * @var array [id => name]
+     * @var array
+     * [id => name]
      */
     private $idNames = [];
 
     /**
-     * @var array [id => times]
+     * @var array
+     * [id => times]
      */
     private $runTimes = [];
 
@@ -179,7 +181,7 @@ class TimerTaskManager implements ManagerInterface
         }
 
         // run task
-        $ret = PhpHelper::call($handler, $params);
+        $ret = TaskHelper::call($handler, $params);
 
         // 主动返回状态等于 -10, 表明想要清除定时器/任务
         if ($ret === self::CLEAR) {

@@ -8,6 +8,8 @@
 
 namespace SwooleLib\Task\Timer;
 
+use SwooleLib\Task\TaskInterface;
+
 /**
  * Interface TimerTaskInterface
  * @package SwooleLib\Task\Timer

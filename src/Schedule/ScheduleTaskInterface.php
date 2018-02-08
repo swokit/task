@@ -6,11 +6,13 @@
  * Time: 下午7:18
  */
 
-namespace SwooleLib\Task;
+namespace SwooleLib\Task\Schedule;
+
+use SwooleLib\Task\TaskInterface;
 
 /**
  * interface ScheduleTaskInterface
- * @package SwooleLib\Task
+ * @package SwooleLib\Task\Schedule
  */
 interface ScheduleTaskInterface extends TaskInterface
 {

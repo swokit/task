@@ -6,12 +6,14 @@
  * Time: 下午7:53
  */
 
-namespace SwooleLib\Task\CronTab;
+namespace SwooleLib\Task\Schedule;
 
 /**
  * Class CronExpression 解析 CronTab格式
- * @package SwooleLib\Task\CronTab
+ * @package SwooleLib\Task\Schedule
+ *
  * Schedule parts must map to:
+ *
  * - second [0-59],
  * - minute [0-59],
  * - hour [0-23],
@@ -31,7 +33,6 @@ class CronExpression
     /**
      * 解析cronTab的定时格式，linux只支持到分钟，这个类支持到秒
      * @param string $expression :
-     *
      *      0     1    2    3    4    5
      *      *     *    *    *    *    *
      *      -     -    -    -    -    -
@@ -43,13 +44,10 @@ class CronExpression
      *      |     +----------- min (0 - 59)
      *      +------------- sec (0-59)
      * @example
-     *
      * // 15minutes between 6pm and 6am
      * '0,15,30,45 18-06 * * *'
-     *
      * // 每小时的第3和第15分钟执行
      * '3,15 * * * *'
-     *
      * @param int $startTime timestamp [default=current timestamp]
      * @return bool|int Unix timestamp - 下一分钟内执行是否需要执行任务，如果需要，则把需要在那几秒执行返回
      * @throws \InvalidArgumentException 错误信息

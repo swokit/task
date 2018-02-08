@@ -6,16 +6,16 @@
  * Time: 下午7:31
  */
 
-namespace SwooleLib\Task\CronTab;
+namespace SwooleLib\Task\Schedule;
 
-use Inhere\Library\Helpers\PhpHelper;
 use Inhere\Library\Helpers\Sys;
+use SwooleLib\Task\BaseTask;
 
 /**
- * Class CronTabTask
- * @package SwooleLib\Task\CronTab
+ * Class ScheduleTask
+ * @package SwooleLib\Task\Schedule
  */
-class CronTabTask
+class ScheduleTask extends BaseTask implements ScheduleTaskInterface
 {
     private $enabled = true;
 
@@ -91,5 +91,14 @@ class CronTabTask
         }
 
         return $logfile;
+    }
+
+    /**
+     * @param array $args
+     * @return mixed
+     */
+    public function exec(array $args)
+    {
+        // TODO: Implement exec() method.
     }
 }
