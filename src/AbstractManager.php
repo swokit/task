@@ -19,6 +19,8 @@ abstract class AbstractManager implements ManagerInterface
 {
     use LoggerAwareTrait;
 
+    protected static $taskInterface = TaskInterface::class;
+
     /**
      * @var array
      */
@@ -30,7 +32,9 @@ abstract class AbstractManager implements ManagerInterface
      */
     public function __construct(array $config = [])
     {
-        TaskHelper::initObject($this, $config);
+        if ($config) {
+            TaskHelper::initObject($this, $config);
+        }
 
         $this->init();
     }
@@ -42,7 +46,48 @@ abstract class AbstractManager implements ManagerInterface
         }
     }
 
-    abstract public function addTask($definition);
+    /**
+     * @param TaskInterface|mixed $definition
+     * @throws \InvalidArgumentException
+     */
+    public function addTask($definition)
+    {
+        if (\is_object($definition)) {
+            if (!$definition instanceof static::$taskInterface) {
+                $definition = new CallbackTask($definition);
+            }
+
+            $this->tasks[$definition->getName()] = $definition;
+            return;
+        }
+
+        if (\is_string($definition)) {
+            if (\class_exists($definition)) {
+                $task = new $definition;
+
+                if ($task instanceof static::$taskInterface) {
+                    $this->tasks[$task->getName()] = $task;
+
+                    return;
+                }
+
+                $task = new CallbackTask($task);
+            } else {
+                $task = new CallbackTask($definition);
+            }
+
+        } elseif (\is_array($definition) && ($class = $definition['class'] ?? null)) {
+            $task = new $class($definition);
+        } elseif (\is_callable($definition)) {
+            $task = new CallbackTask($definition);
+        } else {
+            return;
+        }
+
+        if ($task instanceof static::$taskInterface) {
+            $this->tasks[$task->getName()] = $task;
+        }
+    }
 
     /**
      * @param array $tasks

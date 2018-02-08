@@ -23,5 +23,5 @@ interface TaskInterface
      * @param array $args
      * @return mixed
      */
-    public function run(array $args);
+    public function run(array $args = []);
 }

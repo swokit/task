@@ -47,7 +47,7 @@ abstract class BaseTask implements TaskInterface
     /**
      * {@inheritDoc}
      */
-    public function run(array $args)
+    public function run(array $args = [])
     {
         $this->beforeRun($args);
         $this->exec($args);
@@ -58,7 +58,7 @@ abstract class BaseTask implements TaskInterface
      * @param array $args
      * @return mixed
      */
-    abstract public function exec(array $args);
+    abstract protected function exec(array $args);
 
     /**
      * @param array $args

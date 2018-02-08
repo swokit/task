@@ -45,7 +45,7 @@ class CallbackTask extends BaseTask
      * @param array $args
      * @return mixed
      */
-    public function exec(array $args)
+    protected function exec(array $args)
     {
         return TaskHelper::call($this->callback, ...$args);
     }

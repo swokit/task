@@ -10,11 +10,17 @@
 
 swoole的异步工作任务
 
+> 将 `WorkManager` 绑定到每个task进程上, 再通过它来管理、调度所有的 work task
+
 ## timer task
 
-定时任务
+定时任务 
+
+> 最好使用一个独立进程（创建或者指定特定的worker），通过 `TimerManager` 来管理、调度所有的 timer task
 
 ## Schedule Task(cronTab)
+
+> 最好使用一个独立进程（创建或者指定特定的worker），通过 `ScheduleManager` 来管理、调度所有的 schedule task
 
 计划任务，类似Linux的cronTab,但是最小精度支持到秒
 

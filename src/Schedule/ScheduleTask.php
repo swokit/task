@@ -166,7 +166,7 @@ class ScheduleTask extends BaseTask implements ScheduleTaskInterface
      * @param array $args
      * @return mixed
      */
-    public function exec(array $args)
+    protected function exec(array $args)
     {
         // TODO: Implement exec() method.
     }
