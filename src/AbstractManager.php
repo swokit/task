@@ -47,6 +47,21 @@ abstract class AbstractManager implements ManagerInterface
     }
 
     /**
+     * @param string $namespace
+     * @param string $dirPath
+     * @throws \InvalidArgumentException
+     */
+    public function loadFromNamespace(string $namespace, string $dirPath)
+    {
+        $length = \strlen($dirPath) + 1;
+
+        foreach (glob("$dirPath/*.php") as $file) {
+            $class = $namespace . '\\' . \substr($file, $length, -4);
+            $this->addTask(new $class);
+        }
+    }
+
+    /**
      * @param TaskInterface|mixed $definition
      * @throws \InvalidArgumentException
      */
