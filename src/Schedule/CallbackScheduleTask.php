@@ -8,7 +8,7 @@
 
 namespace SwooleLib\Task\Schedule;
 
-use SwooleLib\Task\CallbackWrapperTaskTrait;
+use SwooleLib\Task\Traits\CallbackWrapperTaskTrait;
 
 /**
  * Class CallbackScheduleTask

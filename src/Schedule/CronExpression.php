@@ -11,9 +11,7 @@ namespace SwooleLib\Task\Schedule;
 /**
  * Class CronExpression 解析 CronTab格式
  * @package SwooleLib\Task\Schedule
- *
  * Schedule parts must map to:
- *
  * - second [0-59],
  * - minute [0-59],
  * - hour [0-23],
@@ -23,12 +21,15 @@ namespace SwooleLib\Task\Schedule;
  */
 class CronExpression
 {
-    public static $error;
-    public static $nodes = [];
-
     const DayOfWeek = ['SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT'];
 
     const MONTH = ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC'];
+
+    /** @var string|null */
+    public static $error;
+
+    /** @var array  */
+    public static $nodes = [];
 
     /**
      * 解析cronTab的定时格式，linux只支持到分钟，这个类支持到秒
@@ -59,15 +60,6 @@ class CronExpression
         $nodes = \preg_split("/[\s]+/i", $expression);
         $length = \count($nodes);
 
-        if ($length !== 5 && $length !== 6) {
-            self::$error = "Invalid cron expression: $expression";
-            return false;
-        }
-
-        if ($startTime <= 0) {
-            $startTime = time();
-        }
-
         if ($length === 6) {
             self::$nodes = $date = [
                 'sec' => empty($nodes[0]) ? [1 => 1] : self::parseNode($nodes[0], 0, 59),
@@ -77,7 +69,7 @@ class CronExpression
                 'month' => self::parseNode($nodes[4], 1, 12),
                 'week' => self::parseNode($nodes[5], 0, 6),
             ];
-        } elseif ($len === 5) {
+        } elseif ($length === 5) {
             self::$nodes = $date = [
                 'sec' => [1 => 1],
                 'min' => self::parseNode($nodes[0], 0, 59),
@@ -86,6 +78,13 @@ class CronExpression
                 'month' => self::parseNode($nodes[3], 1, 12),
                 'week' => self::parseNode($nodes[4], 0, 6),
             ];
+        } else {
+            self::$error = "Invalid cron expression: $expression";
+            return false;
+        }
+
+        if ($startTime <= 0) {
+            $startTime = time();
         }
 
         // string(13) "07 16 12 4 10"
@@ -107,12 +106,12 @@ class CronExpression
 
     /**
      * 解析单个配置的含义
-     * @param $s
-     * @param $min
-     * @param $max
+     * @param string $s
+     * @param int $min
+     * @param int $max
      * @return array
      */
-    protected static function parseNode($s, $min, $max)
+    protected static function parseNode(string $s, int $min, int $max): array
     {
         $result = [];
         $v1 = explode(',', $s);
@@ -154,7 +153,10 @@ class CronExpression
         return self::$error;
     }
 
-    public static function getNodes()
+    /**
+     * @return array
+     */
+    public static function getNodes(): array
     {
         return self::$nodes;
     }

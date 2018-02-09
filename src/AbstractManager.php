@@ -19,8 +19,6 @@ abstract class AbstractManager implements ManagerInterface
 {
     use LoggerAwareTrait;
 
-    protected static $taskInterface = TaskInterface::class;
-
     /**
      * @var array
      */
@@ -63,54 +61,13 @@ abstract class AbstractManager implements ManagerInterface
 
     /**
      * @param TaskInterface|mixed $definition
-     * @throws \InvalidArgumentException
      */
-    public function addTask($definition)
-    {
-        if (\is_object($definition)) {
-            if ($definition instanceof static::$taskInterface) {
-                $this->tasks[$definition->getName()] = $definition;
-            } elseif (\is_callable($definition)) {
-                $task = clone $this->basicTask;
-                $task->setCallback($definition);
-
-                $this->tasks[$task->getName()] = $task;
-            }
-
-            return;
-        }
-
-        if (\is_string($definition)) {
-            if (\class_exists($definition)) {
-                $task = new $definition;
-
-                if ($task instanceof static::$taskInterface) {
-                    $this->tasks[$task->getName()] = $task;
-
-                    return;
-                }
-
-                $task = new CallbackTask($task);
-            } else {
-                $task = new CallbackTask($definition);
-            }
-
-        } elseif (\is_array($definition) && ($class = $definition['class'] ?? null)) {
-            $task = new $class($definition);
-        } elseif (\is_callable($definition)) {
-            $task = new CallbackTask($definition);
-        } else {
-            return;
-        }
-
-        if ($task instanceof static::$taskInterface) {
-            $this->tasks[$task->getName()] = $task;
-        }
-    }
+    abstract public function addTask($definition);
 
     /**
      * @param mixed $callback
      * @return string
+     * @throws \InvalidArgumentException
      */
     public function generateName($callback): string
     {

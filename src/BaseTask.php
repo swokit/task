@@ -38,6 +38,14 @@ abstract class BaseTask implements TaskInterface
     }
 
     /**
+     * @param array $config
+     */
+    public function config(array $config)
+    {
+        TaskHelper::initObject($this, $config);
+    }
+
+    /**
      * @param array $args
      */
     public function beforeRun(array $args)

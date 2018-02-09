@@ -66,6 +66,57 @@ class TimerManager extends AbstractManager
      */
     protected $startTime = 0;
 
+    /**
+     * @var CallbackTimerTask
+     */
+    protected $basicTask;
+
+    protected function init()
+    {
+        parent::init();
+
+        $this->basicTask = new CallbackTimerTask();
+    }
+
+    /**
+     * @param TimerTaskInterface|mixed $definition
+     * @throws \InvalidArgumentException
+     */
+    public function addTask($definition)
+    {
+        $task = null;
+
+        if (\is_object($definition) && $definition instanceof TimerTaskInterface) {
+            $this->tasks[$definition->getName()] = $definition;
+            return;
+        }
+
+        if (\is_string($definition) && \class_exists($definition)) {
+            $obj = new $definition;
+
+            if ($obj instanceof TimerTaskInterface) {
+                $this->tasks[$obj->getName()] = $obj;
+                return;
+            }
+
+            // reset
+            $definition = $obj;
+        }
+
+        if (\is_callable($definition)) {
+            $task = clone $this->basicTask;
+            $task->setName($definition);
+            $task->setCallback($definition);
+        } elseif (\is_array($definition)) {
+            $task = clone $this->basicTask;
+            $task->config($definition);
+        }
+
+        if ($task && $task instanceof TimerTaskInterface) {
+            $this->tasks[$task->getName()] = $task;
+        }
+    }
+    
     public function start()
     {
         $this->startTime = round(microtime(1) * 1000);

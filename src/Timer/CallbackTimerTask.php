@@ -8,7 +8,7 @@
 
 namespace SwooleLib\Task\Timer;
 
-use SwooleLib\Task\CallbackWrapperTaskTrait;
+use SwooleLib\Task\Traits\CallbackWrapperTaskTrait;
 
 /**
  * Class CallbackTimerTask

@@ -8,14 +8,13 @@
 
 namespace SwooleLib\Task\Work;
 
-use SwooleLib\Task\CallbackWrapperTaskInterface;
-use SwooleLib\Task\CallbackWrapperTaskTrait;
+use SwooleLib\Task\Traits\CallbackWrapperTaskTrait;
 
 /**
  * Class CallbackWrapperWork
  * @package SwooleLib\Task\Work
  */
-class CallbackWork extends WorkTask implements CallbackWrapperTaskInterface
+class CallbackWork extends WorkTask
 {
     use CallbackWrapperTaskTrait;
 }

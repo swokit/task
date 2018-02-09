@@ -13,6 +13,7 @@ use Psr\Log\LoggerAwareTrait;
 /**
  * Trait UseLoggerTaskTrait
  * @package SwooleLib\Task\Traits
+ * @property string $name
  */
 trait UseLoggerTaskTrait
 {

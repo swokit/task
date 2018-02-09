@@ -6,7 +6,7 @@
  * Time: 下午8:06
  */
 
-namespace SwooleLib\Task\CronTab;
+namespace SwooleLib\Task\Schedule;
 
 use Swoole\Timer;
 use SwooleLib\Task\AbstractManager;
@@ -25,11 +25,62 @@ class ScheduleManager extends AbstractManager
      */
     private $timerId = -1;
 
+    /**
+     * @var CallbackScheduleTask
+     */
+    protected $basicTask;
+
+    protected function init()
+    {
+        parent::init();
+
+        $this->basicTask = new CallbackScheduleTask();
+    }
+
     public function __destruct()
     {
         if ($this->timerId > -1) {
             Timer::clear($this->timerId);
             $this->timerId = -1;
+        }
+    }
+
+    /**
+     * @param ScheduleTaskInterface|mixed $definition
+     * @throws \InvalidArgumentException
+     */
+    public function addTask($definition)
+    {
+        $task = null;
+
+        if (\is_object($definition) && $definition instanceof ScheduleTaskInterface) {
+            $this->tasks[$definition->getName()] = $definition;
+            return;
+        }
+
+        if (\is_string($definition) && \class_exists($definition)) {
+            $obj = new $definition;
+
+            if ($obj instanceof ScheduleTaskInterface) {
+                $this->tasks[$obj->getName()] = $obj;
+                return;
+            }
+
+            // reset
+            $definition = $obj;
+        }
+
+        if (\is_callable($definition)) {
+            $task = clone $this->basicTask;
+            $task->setName($definition);
+            $task->setCallback($definition);
+        } elseif (\is_array($definition)) {
+            $task = clone $this->basicTask;
+            $task->config($definition);
+        }
+
+        if ($task && $task instanceof ScheduleTaskInterface) {
+            $this->tasks[$task->getName()] = $task;
         }
     }
 
