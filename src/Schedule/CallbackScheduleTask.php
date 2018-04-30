@@ -6,13 +6,13 @@
  * Time: 23:20
  */
 
-namespace SwooleLib\Task\Schedule;
+namespace SwooleKit\Task\Schedule;
 
-use SwooleLib\Task\Traits\CallbackWrapperTaskTrait;
+use SwooleKit\Task\Traits\CallbackWrapperTaskTrait;
 
 /**
  * Class CallbackScheduleTask
- * @package SwooleLib\Task\Schedule
+ * @package SwooleKit\Task\Schedule
  */
 class CallbackScheduleTask extends ScheduleTask
 {

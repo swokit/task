@@ -6,13 +6,13 @@
  * Time: 23:19
  */
 
-namespace SwooleLib\Task\Timer;
+namespace SwooleKit\Task\Timer;
 
-use SwooleLib\Task\Traits\CallbackWrapperTaskTrait;
+use SwooleKit\Task\Traits\CallbackWrapperTaskTrait;
 
 /**
  * Class CallbackTimerTask
- * @package SwooleLib\Task\Timer
+ * @package SwooleKit\Task\Timer
  */
 class CallbackTimerTask extends TimerTask
 {

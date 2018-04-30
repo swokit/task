@@ -6,13 +6,13 @@
  * Time: 下午5:56
  */
 
-namespace SwooleLib\Task\Work;
+namespace SwooleKit\Task\Work;
 
-use SwooleLib\Task\AbstractManager;
+use SwooleKit\Task\AbstractManager;
 
 /**
  * Class WorkManager
- * @package SwooleLib\Task\Work
+ * @package SwooleKit\Task\Work
  */
 class WorkManager extends AbstractManager
 {

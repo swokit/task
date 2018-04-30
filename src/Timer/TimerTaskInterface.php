@@ -6,13 +6,13 @@
  * Time: 下午7:20
  */
 
-namespace SwooleLib\Task\Timer;
+namespace SwooleKit\Task\Timer;
 
-use SwooleLib\Task\TaskInterface;
+use SwooleKit\Task\TaskInterface;
 
 /**
  * Interface TimerTaskInterface
- * @package SwooleLib\Task\Timer
+ * @package SwooleKit\Task\Timer
  */
 interface TimerTaskInterface extends TaskInterface
 {

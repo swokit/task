@@ -6,14 +6,14 @@
  * Time: 下午7:31
  */
 
-namespace SwooleLib\Task\Schedule;
+namespace SwooleKit\Task\Schedule;
 
-use SwooleLib\Task\BaseTask;
-use SwooleLib\Task\TaskHelper;
+use SwooleKit\Task\BaseTask;
+use SwooleKit\Task\TaskHelper;
 
 /**
  * Class ScheduleTask
- * @package SwooleLib\Task\Schedule
+ * @package SwooleKit\Task\Schedule
  */
 class ScheduleTask extends BaseTask implements ScheduleTaskInterface
 {

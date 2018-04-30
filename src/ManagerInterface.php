@@ -6,13 +6,13 @@
  * Time: 下午7:20
  */
 
-namespace SwooleLib\Task;
+namespace SwooleKit\Task;
 
 use Psr\Log\LoggerAwareInterface;
 
 /**
  * Interface ManagerInterface
- * @package SwooleLib\Task
+ * @package SwooleKit\Task
  */
 interface ManagerInterface extends LoggerAwareInterface
 {

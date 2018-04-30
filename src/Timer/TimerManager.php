@@ -6,14 +6,14 @@
  * Time: 11:23
  */
 
-namespace SwooleLib\Task\Timer;
+namespace SwooleKit\Task\Timer;
 
-use SwooleLib\Task\AbstractManager;
-use SwooleLib\Task\TaskHelper;
+use SwooleKit\Task\AbstractManager;
+use SwooleKit\Task\TaskHelper;
 
 /**
  * Class TimerManager - Timed Task Manager, Schedule Task
- * @package SwooleLib\Task\Timer
+ * @package SwooleKit\Task\Timer
  * @link https://wiki.swoole.com/wiki/page/244.html
  */
 class TimerManager extends AbstractManager
@@ -116,7 +116,7 @@ class TimerManager extends AbstractManager
             $this->tasks[$task->getName()] = $task;
         }
     }
-    
+
     public function start()
     {
         $this->startTime = round(microtime(1) * 1000);

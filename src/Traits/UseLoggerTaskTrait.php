@@ -6,13 +6,13 @@
  * Time: 22:48
  */
 
-namespace SwooleLib\Task\Traits;
+namespace SwooleKit\Task\Traits;
 
 use Psr\Log\LoggerAwareTrait;
 
 /**
  * Trait UseLoggerTaskTrait
- * @package SwooleLib\Task\Traits
+ * @package SwooleKit\Task\Traits
  * @property string $name
  */
 trait UseLoggerTaskTrait
