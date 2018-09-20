@@ -6,15 +6,15 @@
  * Time: 下午8:06
  */
 
-namespace SwooleKit\Task\Schedule;
+namespace SwoKit\Task\Schedule;
 
 use Swoole\Timer;
-use SwooleKit\Task\AbstractManager;
-use SwooleKit\Task\TaskHelper;
+use SwoKit\Task\AbstractManager;
+use SwoKit\Task\TaskHelper;
 
 /**
  * Class ScheduleManager
- * @package SwooleKit\Task\Schedule
+ * @package SwoKit\Task\Schedule
  *
  * @ref https://github.com/jobbyphp/jobby/blob/master/src/Jobby.php
  */

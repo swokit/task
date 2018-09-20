@@ -88,6 +88,6 @@ crontab 文件中每行的每个字段代表一项设置，它的格式共分为
 
 > 表达式参考链接：https://www.jianshu.com/p/f03b1497122a
 
-## ref
+## refer
 
 - `"mtdowling/cron-expression": "^1.2"` 一个cronTab表达式解析库

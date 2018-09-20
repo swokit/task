@@ -6,11 +6,11 @@
  * Time: 下午7:53
  */
 
-namespace SwooleKit\Task\Schedule;
+namespace SwoKit\Task\Schedule;
 
 /**
  * Class CronExpression 解析 CronTab格式
- * @package SwooleKit\Task\Schedule
+ * @package SwoKit\Task\Schedule
  * Schedule parts must map to:
  * - second [0-59],
  * - minute [0-59],

@@ -6,14 +6,14 @@
  * Time: 下午2:04
  */
 
-namespace SwooleKit\Task;
+namespace SwoKit\Task;
 
 use Psr\Log\LoggerAwareTrait;
 use Psr\Log\NullLogger;
 
 /**
  * Class AbstractManager
- * @package SwooleKit\Task
+ * @package SwoKit\Task
  */
 abstract class AbstractManager implements ManagerInterface
 {

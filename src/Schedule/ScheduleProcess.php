@@ -6,13 +6,13 @@
  * Time: 下午5:00
  */
 
-namespace SwooleKit\Task\Schedule;
+namespace SwoKit\Task\Schedule;
 
 use Swoole\Process;
 
 /**
  * Class ScheduleProcess
- * @package SwooleKit\Task\Schedule
+ * @package SwoKit\Task\Schedule
  */
 class ScheduleProcess
 {

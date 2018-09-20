@@ -6,9 +6,9 @@
  * Time: 下午7:53
  */
 
-namespace SwooleKit\Task\Test;
+namespace SwoKit\Task\Test;
 
-use SwooleKit\Task\CronExpression;
+use SwoKit\Task\CronExpression;
 use PHPUnit\Framework\TestCase;
 
 /**

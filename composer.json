@@ -1,9 +1,9 @@
 {
-  "name": "swoole-kit/task",
+  "name": "swokit/task",
   "type": "library",
   "description": "a php task powered by swoole",
   "keywords": [ "library", "task", "swoole"],
-  "homepage": "https://github.com/swoole-kit/task",
+  "homepage": "https://github.com/swokit/task",
   "license": "MIT",
   "authors": [
     {
@@ -19,7 +19,7 @@
   },
   "autoload": {
     "psr-4": {
-      "SwooleKit\\Task\\" : "src/"
+      "SwoKit\\Task\\" : "src/"
     }
   },
   "suggest": {

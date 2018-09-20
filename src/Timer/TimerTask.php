@@ -6,13 +6,13 @@
  * Time: 下午7:18
  */
 
-namespace SwooleKit\Task\Timer;
+namespace SwoKit\Task\Timer;
 
-use SwooleKit\Task\BaseTask;
+use SwoKit\Task\BaseTask;
 
 /**
  * Class TimerTask
- * @package SwooleKit\Task\Timer
+ * @package SwoKit\Task\Timer
  */
 abstract class TimerTask extends BaseTask implements TimerTaskInterface
 {

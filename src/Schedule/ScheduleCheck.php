@@ -6,13 +6,13 @@
  * Time: 下午8:13
  */
 
-namespace SwooleKit\Task\Schedule;
+namespace SwoKit\Task\Schedule;
 
 // use Cron\CronExpression;
 
 /**
  * Class ScheduleCheck
- * @package SwooleKit\Task
+ * @package SwoKit\Task
  */
 class ScheduleCheck
 {

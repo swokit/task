@@ -6,13 +6,13 @@
  * Time: 下午5:25
  */
 
-namespace SwooleKit\Task\Work;
+namespace SwoKit\Task\Work;
 
-use SwooleKit\Task\AbstractManager;
+use SwoKit\Task\AbstractManager;
 
 /**
  * Class WorkQueue
- * @package SwooleKit\Task\Work
+ * @package SwoKit\Task\Work
  * @from GuzzleHttp\Promise\TaskQueue
  */
 class WorkQueue extends AbstractManager

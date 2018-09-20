@@ -6,11 +6,11 @@
  * Time: 22:37
  */
 
-namespace SwooleKit\Task\Traits;
+namespace SwoKit\Task\Traits;
 
 /**
  * Trait CallbackWrapperTaskTrait
- * @package SwooleKit\Task\Traits
+ * @package SwoKit\Task\Traits
  */
 trait CallbackWrapperTaskTrait
 {

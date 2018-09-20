@@ -6,14 +6,14 @@
  * Time: 11:23
  */
 
-namespace SwooleKit\Task\Timer;
+namespace SwoKit\Task\Timer;
 
-use SwooleKit\Task\AbstractManager;
-use SwooleKit\Task\TaskHelper;
+use SwoKit\Task\AbstractManager;
+use SwoKit\Task\TaskHelper;
 
 /**
  * Class TimerManager - Timed Task Manager, Schedule Task
- * @package SwooleKit\Task\Timer
+ * @package SwoKit\Task\Timer
  * @link https://wiki.swoole.com/wiki/page/244.html
  */
 class TimerManager extends AbstractManager

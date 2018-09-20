@@ -6,11 +6,11 @@
  * Time: 下午7:18
  */
 
-namespace SwooleKit\Task;
+namespace SwoKit\Task;
 
 /**
  * Class BaseTask
- * @package SwooleKit\Task
+ * @package SwoKit\Task
  */
 abstract class BaseTask implements TaskInterface
 {

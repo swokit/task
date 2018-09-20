@@ -6,11 +6,11 @@
  * Time: 下午4:59
  */
 
-namespace SwooleKit\Task\Timer;
+namespace SwoKit\Task\Timer;
 
 /**
  * Class Process
- * @package SwooleKit\Task\Timer
+ * @package SwoKit\Task\Timer
  */
 class TimerProcess
 {

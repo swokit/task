@@ -6,11 +6,11 @@
  * Time: 下午7:20
  */
 
-namespace SwooleKit\Task;
+namespace SwoKit\Task;
 
 /**
  * Interface TaskInterface
- * @package SwooleKit\Task
+ * @package SwoKit\Task
  */
 interface TaskInterface
 {

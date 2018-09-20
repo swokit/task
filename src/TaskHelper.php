@@ -6,11 +6,11 @@
  * Time: 下午1:09
  */
 
-namespace SwooleKit\Task;
+namespace SwoKit\Task;
 
 /**
  * Class TaskHelper
- * @package SwooleKit\Task
+ * @package SwoKit\Task
  */
 final class TaskHelper
 {

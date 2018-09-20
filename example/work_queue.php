@@ -8,7 +8,7 @@
 
 require dirname(__DIR__) . '/test/boot.php';
 
-$q = new \SwooleKit\Task\Work\WorkQueue();
+$q = new \SwoKit\Task\Work\WorkQueue();
 
 $q->add(function () {
     echo 'he';
