@@ -6,15 +6,15 @@
  * Time: 下午8:06
  */
 
-namespace SwoKit\Task\Schedule;
+namespace Swokit\Task\Schedule;
 
+use Swokit\Task\AbstractManager;
+use Swokit\Task\TaskHelper;
 use Swoole\Timer;
-use SwoKit\Task\AbstractManager;
-use SwoKit\Task\TaskHelper;
 
 /**
  * Class ScheduleManager
- * @package SwoKit\Task\Schedule
+ * @package Swokit\Task\Schedule
  *
  * @ref https://github.com/jobbyphp/jobby/blob/master/src/Jobby.php
  */
@@ -98,7 +98,7 @@ class ScheduleManager extends AbstractManager
     protected function startWithSwoole($wait = true)
     {
         // add a timer,
-        $this->timerId = Timer::tick(1, function (){
+        $this->timerId = Timer::tick(1, function () {
             $this->dispatch();
         });
 
@@ -144,7 +144,7 @@ class ScheduleManager extends AbstractManager
 
     /**
      * @param string $job
-     * @param array  $config
+     * @param array $config
      */
     protected function runUnix($job, array $config)
     {
@@ -157,7 +157,7 @@ class ScheduleManager extends AbstractManager
 
     /**
      * @param string $job
-     * @param array  $config
+     * @param array $config
      */
     protected function runWindows($job, array $config)
     {

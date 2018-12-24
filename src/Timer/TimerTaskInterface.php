@@ -6,13 +6,13 @@
  * Time: 下午7:20
  */
 
-namespace SwoKit\Task\Timer;
+namespace Swokit\Task\Timer;
 
-use SwoKit\Task\TaskInterface;
+use Swokit\Task\TaskInterface;
 
 /**
  * Interface TimerTaskInterface
- * @package SwoKit\Task\Timer
+ * @package Swokit\Task\Timer
  */
 interface TimerTaskInterface extends TaskInterface
 {

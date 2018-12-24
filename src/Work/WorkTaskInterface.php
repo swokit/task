@@ -6,13 +6,13 @@
  * Time: 下午7:18
  */
 
-namespace SwoKit\Task\Work;
+namespace Swokit\Task\Work;
 
-use SwoKit\Task\TaskInterface;
+use Swokit\Task\TaskInterface;
 
 /**
  * interface WorkTaskInterface
- * @package SwoKit\Task\Work
+ * @package Swokit\Task\Work
  */
 interface WorkTaskInterface extends TaskInterface
 {

@@ -6,14 +6,14 @@
  * Time: 11:23
  */
 
-namespace SwoKit\Task\Timer;
+namespace Swokit\Task\Timer;
 
-use SwoKit\Task\AbstractManager;
-use SwoKit\Task\TaskHelper;
+use Swokit\Task\AbstractManager;
+use Swokit\Task\TaskHelper;
 
 /**
  * Class TimerManager - Timed Task Manager, Schedule Task
- * @package SwoKit\Task\Timer
+ * @package Swokit\Task\Timer
  * @link https://wiki.swoole.com/wiki/page/244.html
  */
 class TimerManager extends AbstractManager
@@ -134,7 +134,8 @@ class TimerManager extends AbstractManager
      */
     public function tick(
         string $name, int $timeMs, callable $handler, array $params = [], int $times = self::FOREVER
-    ) {
+    )
+    {
         return $this->add($name, $timeMs, $handler, $params, $times);
     }
 

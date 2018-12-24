@@ -6,13 +6,13 @@
  * Time: 下午7:20
  */
 
-namespace SwoKit\Task;
+namespace Swokit\Task;
 
 use Psr\Log\LoggerAwareInterface;
 
 /**
  * Interface ManagerInterface
- * @package SwoKit\Task
+ * @package Swokit\Task
  */
 interface ManagerInterface extends LoggerAwareInterface
 {

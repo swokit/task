@@ -6,11 +6,11 @@
  * Time: 下午5:42
  */
 
-namespace SwoKit\Task\Schedule;
+namespace Swokit\Task\Schedule;
 
 /**
  * Class GeneralSchedule
- * @package SwoKit\Task\Schedule
+ * @package Swokit\Task\Schedule
  */
 class GeneralSchedule extends ScheduleTask
 {

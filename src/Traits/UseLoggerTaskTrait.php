@@ -6,13 +6,13 @@
  * Time: 22:48
  */
 
-namespace SwoKit\Task\Traits;
+namespace Swokit\Task\Traits;
 
 use Psr\Log\LoggerAwareTrait;
 
 /**
  * Trait UseLoggerTaskTrait
- * @package SwoKit\Task\Traits
+ * @package Swokit\Task\Traits
  * @property string $name
  */
 trait UseLoggerTaskTrait

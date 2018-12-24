@@ -6,13 +6,13 @@
  * Time: 下午5:56
  */
 
-namespace SwoKit\Task\Work;
+namespace Swokit\Task\Work;
 
-use SwoKit\Task\AbstractManager;
+use Swokit\Task\AbstractManager;
 
 /**
  * Class WorkManager
- * @package SwoKit\Task\Work
+ * @package Swokit\Task\Work
  */
 class WorkManager extends AbstractManager
 {

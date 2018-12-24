@@ -6,13 +6,13 @@
  * Time: 22:43
  */
 
-namespace SwoKit\Task\Work;
+namespace Swokit\Task\Work;
 
-use SwoKit\Task\Traits\CallbackWrapperTaskTrait;
+use Swokit\Task\Traits\CallbackWrapperTaskTrait;
 
 /**
  * Class CallbackWrapperWork
- * @package SwoKit\Task\Work
+ * @package Swokit\Task\Work
  */
 class CallbackWork extends WorkTask
 {

@@ -6,14 +6,14 @@
  * Time: 下午7:31
  */
 
-namespace SwoKit\Task\Schedule;
+namespace Swokit\Task\Schedule;
 
-use SwoKit\Task\BaseTask;
-use SwoKit\Task\TaskHelper;
+use Swokit\Task\BaseTask;
+use Swokit\Task\TaskHelper;
 
 /**
  * Class ScheduleTask
- * @package SwoKit\Task\Schedule
+ * @package Swokit\Task\Schedule
  */
 class ScheduleTask extends BaseTask implements ScheduleTaskInterface
 {
@@ -53,25 +53,25 @@ class ScheduleTask extends BaseTask implements ScheduleTaskInterface
      * @var array
      */
     protected $options = [
-        'jobClass'       => 'Jobby\BackgroundJob',
-        'recipients'     => null,
-        'mailer'         => 'sendmail',
-        'maxRuntime'     => null,
-        'smtpHost'       => null,
-        'smtpPort'       => 25,
-        'smtpUsername'   => null,
-        'smtpPassword'   => null,
-        'smtpSender'     => '',
+        'jobClass' => 'Jobby\BackgroundJob',
+        'recipients' => null,
+        'mailer' => 'sendmail',
+        'maxRuntime' => null,
+        'smtpHost' => null,
+        'smtpPort' => 25,
+        'smtpUsername' => null,
+        'smtpPassword' => null,
+        'smtpSender' => '',
         'smtpSenderName' => 'jobby',
-        'smtpSecurity'   => null,
-        'runUser'        => null, // www
-        'environment'    => 'pdt',
-        'runOnHost'      => 'localhost',
-        'output'         => null,
-        'dateFormat'     => 'Y-m-d H:i:s',
-        'enabled'        => true,
-        'haltDir'        => null,
-        'debug'          => false,
+        'smtpSecurity' => null,
+        'runUser' => null, // www
+        'environment' => 'pdt',
+        'runOnHost' => 'localhost',
+        'output' => null,
+        'dateFormat' => 'Y-m-d H:i:s',
+        'enabled' => true,
+        'haltDir' => null,
+        'debug' => false,
     ];
 
     /**

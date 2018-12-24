@@ -6,13 +6,13 @@
  * Time: 22:37
  */
 
-namespace SwoKit\Task\Traits;
+namespace Swokit\Task\Traits;
 
 use Toolkit\PhpUtil\PhpHelper;
 
 /**
  * Trait CallbackWrapperTaskTrait
- * @package SwoKit\Task\Traits
+ * @package Swokit\Task\Traits
  */
 trait CallbackWrapperTaskTrait
 {
