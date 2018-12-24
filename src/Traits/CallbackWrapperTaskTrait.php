@@ -8,6 +8,8 @@
 
 namespace SwoKit\Task\Traits;
 
+use Toolkit\PhpUtil\PhpHelper;
+
 /**
  * Trait CallbackWrapperTaskTrait
  * @package SwoKit\Task\Traits
@@ -36,6 +38,6 @@ trait CallbackWrapperTaskTrait
      */
     protected function exec(array $args)
     {
-        return TaskHelper::call($this->callback, ...$args);
+        return PhpHelper::call($this->callback, ...$args);
     }
 }
