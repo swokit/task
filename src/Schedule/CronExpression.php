@@ -21,9 +21,22 @@ namespace Swokit\Task\Schedule;
  */
 class CronExpression
 {
-    const DayOfWeek = ['SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT'];
+    public const MONTHS = [
+        'JAN',
+        'FEB',
+        'MAR',
+        'APR',
+        'MAY',
+        'JUN',
+        'JUL',
+        'AUG',
+        'SEP',
+        'OCT',
+        'NOV',
+        'DEC'
+    ];
 
-    const MONTH = ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC'];
+    public const DayOfWeek = ['SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT'];
 
     /** @var string|null */
     public static $error;
@@ -49,34 +62,34 @@ class CronExpression
      * '0,15,30,45 18-06 * * *'
      * // 每小时的第3和第15分钟执行
      * '3,15 * * * *'
-     * @param int $startTime timestamp [default=current timestamp]
+     * @param int    $startTime timestamp [default=current timestamp]
      * @return bool|int Unix timestamp - 下一分钟内执行是否需要执行任务，如果需要，则把需要在那几秒执行返回
      * @throws \InvalidArgumentException 错误信息
      */
     public static function parse(string $expression, int $startTime = null)
     {
-        $expression = \str_replace(["\t", "\n", '  '], ' ', trim($expression));
+        $expression = \str_replace(["\t", "\n", '  '], ' ', \trim($expression));
         // $nodes = explode(' ', $expression);
-        $nodes = \preg_split("/[\s]+/i", $expression);
+        $nodes  = \preg_split("/[\s]+/i", $expression);
         $length = \count($nodes);
 
         if ($length === 6) {
             self::$nodes = $date = [
-                'sec' => empty($nodes[0]) ? [1 => 1] : self::parseNode($nodes[0], 0, 59),
-                'min' => self::parseNode($nodes[1], 0, 59),
-                'hour' => self::parseNode($nodes[2], 0, 23),
-                'day' => self::parseNode($nodes[3], 1, 31),
+                'sec'   => empty($nodes[0]) ? [1 => 1] : self::parseNode($nodes[0], 0, 59),
+                'min'   => self::parseNode($nodes[1], 0, 59),
+                'hour'  => self::parseNode($nodes[2], 0, 23),
+                'day'   => self::parseNode($nodes[3], 1, 31),
                 'month' => self::parseNode($nodes[4], 1, 12),
-                'week' => self::parseNode($nodes[5], 0, 6),
+                'week'  => self::parseNode($nodes[5], 0, 6),
             ];
         } elseif ($length === 5) {
             self::$nodes = $date = [
-                'sec' => [1 => 1],
-                'min' => self::parseNode($nodes[0], 0, 59),
-                'hour' => self::parseNode($nodes[1], 0, 23),
-                'day' => self::parseNode($nodes[2], 1, 31),
+                'sec'   => [1 => 1],
+                'min'   => self::parseNode($nodes[0], 0, 59),
+                'hour'  => self::parseNode($nodes[1], 0, 23),
+                'day'   => self::parseNode($nodes[2], 1, 31),
                 'month' => self::parseNode($nodes[3], 1, 12),
-                'week' => self::parseNode($nodes[4], 0, 6),
+                'week'  => self::parseNode($nodes[4], 0, 6),
             ];
         } else {
             self::$error = "Invalid cron expression: $expression";
@@ -107,18 +120,18 @@ class CronExpression
     /**
      * 解析单个配置的含义
      * @param string $s
-     * @param int $min
-     * @param int $max
+     * @param int    $min
+     * @param int    $max
      * @return array
      */
     protected static function parseNode(string $s, int $min, int $max): array
     {
         $result = [];
-        $v1 = explode(',', $s);
+        $v1     = \explode(',', $s);
 
         foreach ($v1 as $v2) {
-            $v3 = explode('/', $v2);
-            $v4 = explode('-', $v3[0]);
+            $v3   = \explode('/', $v2);
+            $v4   = \explode('-', $v3[0]);
             $step = empty($v3[1]) ? 1 : (int)$v3[1];
 
             // $_min = count($v4) === 2 ? (int)$v4[0] : ($v3[0] === '*' ? $min : (int)$v3[0]);

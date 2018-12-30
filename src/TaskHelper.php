@@ -8,6 +8,8 @@
 
 namespace Swokit\Task;
 
+use Swoole\Server;
+
 /**
  * Class TaskHelper
  * @package Swokit\Task
@@ -35,7 +37,7 @@ final class TaskHelper
      */
     public static function hasSwoole(): bool
     {
-        return \class_exists('\Swoole\Server', false);
+        return \class_exists(Server::class, false);
     }
 
     /**

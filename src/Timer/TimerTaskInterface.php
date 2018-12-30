@@ -16,7 +16,7 @@ use Swokit\Task\TaskInterface;
  */
 interface TimerTaskInterface extends TaskInterface
 {
-    const FOREVER = -1;
+    public const FOREVER = -1;
 
     /**
      * @return int

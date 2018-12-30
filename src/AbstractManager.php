@@ -53,7 +53,7 @@ abstract class AbstractManager implements ManagerInterface
     {
         $length = \strlen($dirPath) + 1;
 
-        foreach (glob("$dirPath/*.php") as $file) {
+        foreach (\glob("$dirPath/*.php") as $file) {
             $class = $namespace . '\\' . \substr($file, $length, -4);
             $this->addTask(new $class);
         }
@@ -74,9 +74,9 @@ abstract class AbstractManager implements ManagerInterface
         if (\is_string($callback)) {
             $name = $callback;
         } elseif (\is_object($callback)) {
-            $name = spl_object_hash($callback);
+            $name = \spl_object_hash($callback);
         } elseif (\is_array($callback)) {
-            $name = implode(':', $callback);
+            $name = \implode(':', $callback);
         } else {
             throw new \InvalidArgumentException('Invalid param for create callback task');
         }

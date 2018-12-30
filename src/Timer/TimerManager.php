@@ -18,11 +18,11 @@ use Swokit\Task\TaskHelper;
  */
 class TimerManager extends AbstractManager
 {
-    const IDX_ID = 0;
-    const IDX_HANDLER = 1;
-    const IDX_TIMES = 2;
-    const IDX_TIME = 3;
-    const IDX_PARAMS = 4;
+    public const IDX_ID      = 0;
+    public const IDX_HANDLER = 1;
+    public const IDX_TIMES   = 2;
+    public const IDX_TIME    = 3;
+    public const IDX_PARAMS  = 4;
 
     /**
      * some values
@@ -31,10 +31,10 @@ class TimerManager extends AbstractManager
      *  0   stopped timer
      *  >0  run defined times, then stop it.
      */
-    const ONCE = 1;
-    const STOPPED = 0;
-    const FOREVER = -1;
-    const CLEAR = -10;
+    public const ONCE    = 1;
+    public const STOPPED = 0;
+    public const FOREVER = -1;
+    public const CLEAR   = -10;
 
     /**
      * @var array[]
@@ -246,8 +246,6 @@ class TimerManager extends AbstractManager
 
         if ($maxTimes > 0) {
             $this->runTimes[$timerId]++;
-
-            return true;
         }
 
         return true;
@@ -273,7 +271,7 @@ class TimerManager extends AbstractManager
      */
     public function getTimerId(string $name): int
     {
-        return array_search($name, $this->idNames, true) ?: 0;
+        return \array_search($name, $this->idNames, true) ?: 0;
     }
 
     /**
