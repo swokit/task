@@ -17,7 +17,7 @@ use Swokit\Task\CronExpression;
 class CronExpressionTest extends TestCase
 {
 
-    public function testParse()
+    public function testParse(): void
     {
         // $time = CronExpression::parse('*/1 * * * *');
         // var_dump($time, CronExpression::getNodes());

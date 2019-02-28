@@ -54,17 +54,17 @@ class WorkQueue extends AbstractManager
      * @param callable|mixed $task
      * @throws \InvalidArgumentException
      */
-    public function add($task)
+    public function add($task): void
     {
         $this->addTask($task);
     }
 
-    public function start()
+    public function start(): void
     {
         $this->run();
     }
 
-    public function run()
+    public function run(): void
     {
         /** @var WorkTask $task */
         while ($task = array_shift($this->tasks)) {
@@ -83,7 +83,7 @@ class WorkQueue extends AbstractManager
      *
      * Note: This shutdown will occur before any destructors are triggered.
      */
-    public function disableShutdown()
+    public function disableShutdown(): void
     {
         $this->enableShutdown = false;
     }

@@ -71,7 +71,7 @@ class TimerManager extends AbstractManager
      */
     protected $basicTask;
 
-    protected function init()
+    protected function init(): void
     {
         parent::init();
 
@@ -82,7 +82,7 @@ class TimerManager extends AbstractManager
      * @param TimerTaskInterface|mixed $definition
      * @throws \InvalidArgumentException
      */
-    public function addTask($definition)
+    public function addTask($definition): void
     {
         $task = null;
 
@@ -117,7 +117,7 @@ class TimerManager extends AbstractManager
         }
     }
 
-    public function start()
+    public function start(): void
     {
         $this->startTime = round(microtime(1) * 1000);
     }
@@ -134,8 +134,7 @@ class TimerManager extends AbstractManager
      */
     public function tick(
         string $name, int $timeMs, callable $handler, array $params = [], int $times = self::FOREVER
-    )
-    {
+    ): self {
         return $this->add($name, $timeMs, $handler, $params, $times);
     }
 
@@ -148,7 +147,7 @@ class TimerManager extends AbstractManager
      * @return $this
      * @throws \InvalidArgumentException
      */
-    public function after(string $name, int $timeMs, callable $handler, array $params = [])
+    public function after(string $name, int $timeMs, callable $handler, array $params = []): self
     {
         return $this->add($name, $timeMs, $handler, $params, self::ONCE);
     }
@@ -172,8 +171,7 @@ class TimerManager extends AbstractManager
      */
     public function add(
         string $name, int $timeMs, callable $handler, array $params = [], int $times = self::FOREVER
-    )
-    {
+    ): self {
         if ($this->has($name)) {
             throw new \InvalidArgumentException("The timer [$name] has been exists!");
         }
@@ -197,7 +195,7 @@ class TimerManager extends AbstractManager
     /**
      * @param TimerTaskInterface $task
      */
-    public function addTimer(TimerTaskInterface $task)
+    public function addTimer(TimerTaskInterface $task): void
     {
         $this->tasks[$task->getName()] = $task;
     }
@@ -330,7 +328,7 @@ class TimerManager extends AbstractManager
     /**
      * @param array $timers
      */
-    public function setTimers(array $timers)
+    public function setTimers(array $timers): void
     {
         $this->timers = $timers;
     }
@@ -354,7 +352,7 @@ class TimerManager extends AbstractManager
     /**
      * @param int $dispatchMode
      */
-    public function setDispatchMode(int $dispatchMode)
+    public function setDispatchMode(int $dispatchMode): void
     {
         $this->dispatchMode = $dispatchMode;
     }

@@ -60,7 +60,7 @@ final class TaskHelper
      * @param $obj
      * @param array $config
      */
-    public static function initObject($obj, array $config)
+    public static function initObject($obj, array $config): void
     {
         foreach ($config as $name => $value) {
             $setter = 'set' . ucfirst($name);
@@ -93,7 +93,7 @@ final class TaskHelper
         }
 
         if (\is_array($cb)) {
-            list($obj, $mhd) = $cb;
+            [$obj, $mhd] = $cb;
 
             return \is_object($obj) ? $obj->$mhd(...$args) : $obj::$mhd(...$args);
         }
@@ -109,7 +109,7 @@ final class TaskHelper
      * @param string|null $user
      * @return string
      */
-    public static function exec(string $command, $output = null, string $user = null)
+    public static function exec(string $command, $output = null, string $user = null): string
     {
         return \exec($command);
     }
@@ -119,7 +119,7 @@ final class TaskHelper
      * @param int $mode
      * @throws \RuntimeException
      */
-    public static function mkdir(string $dir, int $mode = 0775)
+    public static function mkdir(string $dir, int $mode = 0775): void
     {
         if (!file_exists($dir) && !mkdir($dir, $mode, true) && !is_dir($dir)) {
             throw new \RuntimeException(sprintf('Directory "%s" was not created', $dir));

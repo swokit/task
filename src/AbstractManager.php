@@ -37,7 +37,7 @@ abstract class AbstractManager implements ManagerInterface
         $this->init();
     }
 
-    protected function init()
+    protected function init(): void
     {
         if (!$this->logger) {
             $this->setLogger(new NullLogger());
@@ -49,7 +49,7 @@ abstract class AbstractManager implements ManagerInterface
      * @param string $dirPath
      * @throws \InvalidArgumentException
      */
-    public function loadFromNamespace(string $namespace, string $dirPath)
+    public function loadFromNamespace(string $namespace, string $dirPath): void
     {
         $length = \strlen($dirPath) + 1;
 
@@ -62,7 +62,7 @@ abstract class AbstractManager implements ManagerInterface
     /**
      * @param TaskInterface|mixed $definition
      */
-    abstract public function addTask($definition);
+    abstract public function addTask($definition): void;
 
     /**
      * @param mixed $callback

@@ -41,12 +41,12 @@ class ScheduleProcess
         }, false, false);
     }
 
-    public function start()
+    public function start(): void
     {
         $this->pid = $this->process->start();
     }
 
-    public function run(Process $process)
+    public function run(Process $process): void
     {
 
     }
@@ -62,7 +62,7 @@ class ScheduleProcess
     /**
      * @param string $name
      */
-    public function setName(string $name)
+    public function setName(string $name): void
     {
         $this->name = $name;
     }

@@ -23,7 +23,7 @@ trait UseLoggerTaskTrait
      * @param string $msg
      * @param array $data
      */
-    protected function debug(string $msg, array $data = [])
+    protected function debug(string $msg, array $data = []): void
     {
         $this->log("name=$this->name " . $msg, $data, 'debug');
     }
@@ -32,7 +32,7 @@ trait UseLoggerTaskTrait
      * @param string $msg
      * @param array $data
      */
-    protected function info(string $msg, array $data = [])
+    protected function info(string $msg, array $data = []): void
     {
         $this->log("name=$this->name " . $msg, $data, 'info');
     }
@@ -41,7 +41,7 @@ trait UseLoggerTaskTrait
      * @param $msg
      * @param array $data
      */
-    protected function err(string $msg, array $data = [])
+    protected function err(string $msg, array $data = []): void
     {
         $this->log("name=$this->name " . $msg, $data, 'error');
     }
@@ -51,7 +51,7 @@ trait UseLoggerTaskTrait
      * @param array $data
      * @param string $type
      */
-    protected function log(string $msg, array $data = [], string $type = 'info')
+    protected function log(string $msg, array $data = [], string $type = 'info'): void
     {
         if ($this->logger) {
             $this->logger->log($type, $msg, $data);

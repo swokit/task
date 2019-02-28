@@ -161,7 +161,7 @@ class CronExpression
         return $result;
     }
 
-    public static function getError()
+    public static function getError(): ?string
     {
         return self::$error;
     }

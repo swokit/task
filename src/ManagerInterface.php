@@ -16,5 +16,5 @@ use Psr\Log\LoggerAwareInterface;
  */
 interface ManagerInterface extends LoggerAwareInterface
 {
-    public function start();
+    public function start(): void;
 }

@@ -25,7 +25,7 @@ trait CallbackWrapperTaskTrait
      * @param callable|mixed $callback
      * @return CallbackWrapperTaskTrait
      */
-    public function setCallback($callback)
+    public function setCallback($callback): CallbackWrapperTaskTrait
     {
         $this->callback = $callback;
 

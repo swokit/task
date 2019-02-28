@@ -21,7 +21,7 @@ class WorkManager extends AbstractManager
      */
     protected $basicTask;
 
-    protected function init()
+    protected function init(): void
     {
         parent::init();
 
@@ -32,7 +32,7 @@ class WorkManager extends AbstractManager
      * @param WorkTaskInterface|mixed $definition
      * @throws \InvalidArgumentException
      */
-    public function addTask($definition)
+    public function addTask($definition): void
     {
         $task = null;
 
@@ -67,7 +67,7 @@ class WorkManager extends AbstractManager
         }
     }
 
-    public function start()
+    public function start(): void
     {
         // TODO: Implement start() method.
     }

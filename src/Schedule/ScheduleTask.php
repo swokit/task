@@ -147,7 +147,7 @@ class ScheduleTask extends BaseTask implements ScheduleTaskInterface
      * @return string
      * @throws \RuntimeException
      */
-    protected function getLogfile()
+    protected function getLogfile(): string
     {
         if (!$logfile = $this->options['output']) {
             return false;

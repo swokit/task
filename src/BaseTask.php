@@ -40,7 +40,7 @@ abstract class BaseTask implements TaskInterface
     /**
      * @param array $config
      */
-    public function config(array $config)
+    public function config(array $config): void
     {
         TaskHelper::initObject($this, $config);
     }
@@ -48,7 +48,7 @@ abstract class BaseTask implements TaskInterface
     /**
      * @param array $args
      */
-    public function beforeRun(array $args)
+    public function beforeRun(array $args): void
     {
     }
 
@@ -81,14 +81,14 @@ abstract class BaseTask implements TaskInterface
     /**
      * @param array $args
      */
-    public function afterRun(array $args)
+    public function afterRun(array $args): void
     {
     }
 
     /**
      * @param \Throwable $e
      */
-    protected function onException(\Throwable $e)
+    protected function onException(\Throwable $e): void
     {
         // log error
     }
@@ -104,7 +104,7 @@ abstract class BaseTask implements TaskInterface
     /**
      * @param string $name
      */
-    public function setName(string $name)
+    public function setName(string $name): void
     {
         $this->name = $name;
     }

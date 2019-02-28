@@ -30,7 +30,7 @@ class ScheduleManager extends AbstractManager
      */
     protected $basicTask;
 
-    protected function init()
+    protected function init(): void
     {
         parent::init();
 
@@ -49,7 +49,7 @@ class ScheduleManager extends AbstractManager
      * @param ScheduleTaskInterface|mixed $definition
      * @throws \InvalidArgumentException
      */
-    public function addTask($definition)
+    public function addTask($definition): void
     {
         $task = null;
 
@@ -84,7 +84,7 @@ class ScheduleManager extends AbstractManager
         }
     }
 
-    public function start()
+    public function start(): void
     {
         if (TaskHelper::hasSwoole()) {
             $this->startWithSwoole();
@@ -95,7 +95,7 @@ class ScheduleManager extends AbstractManager
         }
     }
 
-    protected function startWithSwoole($wait = true)
+    protected function startWithSwoole($wait = true): void
     {
         // add a timer,
         $this->timerId = Timer::tick(1, function () {
@@ -107,10 +107,9 @@ class ScheduleManager extends AbstractManager
         }
     }
 
-    public function startWithPcntl()
+    public function startWithPcntl(): void
     {
         pcntl_signal(SIGALRM, $handler);
-
 
         while (true) {
             pcntl_signal_dispatch();
@@ -119,7 +118,7 @@ class ScheduleManager extends AbstractManager
         }
     }
 
-    public function startWithRaw()
+    public function startWithRaw(): void
     {
         while (true) {
             $this->dispatch();
@@ -129,7 +128,7 @@ class ScheduleManager extends AbstractManager
     /**
      * dispatch schedule task
      */
-    public function dispatch()
+    public function dispatch(): void
     {
 
     }
@@ -146,7 +145,7 @@ class ScheduleManager extends AbstractManager
      * @param string $job
      * @param array $config
      */
-    protected function runUnix($job, array $config)
+    protected function runUnix($job, array $config): void
     {
         $command = $this->getExecutableCommand($job, $config);
         $binary = $this->getPhpBinary();
@@ -159,7 +158,7 @@ class ScheduleManager extends AbstractManager
      * @param string $job
      * @param array $config
      */
-    protected function runWindows($job, array $config)
+    protected function runWindows($job, array $config): void
     {
         // Run in background (non-blocking). From
         // http://us3.php.net/manual/en/function.exec.php#43834
@@ -169,7 +168,7 @@ class ScheduleManager extends AbstractManager
         pclose(popen("start \"blah\" /B \"$binary\" $command", 'r'));
     }
 
-    private function getPhpBinary()
+    private function getPhpBinary(): string
     {
         return 'php';
     }
