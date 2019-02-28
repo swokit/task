@@ -11,10 +11,10 @@ error_reporting(E_ALL | E_STRICT);
 date_default_timezone_set('Asia/Shanghai');
 
 $inhereDir = dirname(__DIR__, 2);
-$map = [
+$map       = [
     'Swokit\Task\Example\\' => dirname(__DIR__) . '/example',
-    'Swokit\Task\Test\\' => __DIR__,
-    'Swokit\Task\\' => dirname(__DIR__) . '/src',
+    'Swokit\Task\Test\\'    => __DIR__,
+    'Swokit\Task\\'         => dirname(__DIR__) . '/src',
 ];
 
 spl_autoload_register(function ($class) use ($map) {

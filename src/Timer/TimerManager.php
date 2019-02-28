@@ -124,26 +124,30 @@ class TimerManager extends AbstractManager
 
     /**
      * add a tick timer 添加一个循环定时任务
-     * @param string $name
-     * @param int $timeMs Millisecond
+     * @param string   $name
+     * @param int      $timeMs Millisecond
      * @param callable $handler
-     * @param array $params
-     * @param int $times
+     * @param array    $params
+     * @param int      $times
      * @return $this
      * @throws \InvalidArgumentException
      */
     public function tick(
-        string $name, int $timeMs, callable $handler, array $params = [], int $times = self::FOREVER
+        string $name,
+        int $timeMs,
+        callable $handler,
+        array $params = [],
+        int $times = self::FOREVER
     ): self {
         return $this->add($name, $timeMs, $handler, $params, $times);
     }
 
     /**
      * add a after timer 添加一个一次性定时任务
-     * @param string $name
-     * @param int $timeMs Millisecond
+     * @param string   $name
+     * @param int      $timeMs Millisecond
      * @param callable $handler
-     * @param array $params
+     * @param array    $params
      * @return $this
      * @throws \InvalidArgumentException
      */
@@ -157,11 +161,11 @@ class TimerManager extends AbstractManager
      * @NOTICE
      * - 定时器仅在当前进程空间内有效
      * - 定时器是纯异步实现的，不能与阻塞IO的函数一起使用，否则定时器的执行时间会发生错乱
-     * @param string $name
-     * @param int $timeMs
+     * @param string   $name
+     * @param int      $timeMs
      * @param callable $handler
-     * @param array $params
-     * @param int $times 大于0表示定时任务需要执行的次数; 小于等于0 表示此定时器的状态
+     * @param array    $params
+     * @param int      $times 大于0表示定时任务需要执行的次数; 小于等于0 表示此定时器的状态
      * allowed values:
      *  -1 never stop/always running. 一直执行的定时任务
      *  0  stopped. 此定时任务暂时被停止执行
@@ -170,7 +174,11 @@ class TimerManager extends AbstractManager
      * @throws \InvalidArgumentException
      */
     public function add(
-        string $name, int $timeMs, callable $handler, array $params = [], int $times = self::FOREVER
+        string $name,
+        int $timeMs,
+        callable $handler,
+        array $params = [],
+        int $times = self::FOREVER
     ): self {
         if ($this->has($name)) {
             throw new \InvalidArgumentException("The timer [$name] has been exists!");
@@ -182,7 +190,7 @@ class TimerManager extends AbstractManager
             $id = swoole_timer_tick($timeMs, [$this, 'dispatch'], $params);
         }
 
-        $this->idNames[$id] = $name;
+        $this->idNames[$id]  = $name;
         $this->timers[$name] = [$id, $handler, $times, $timeMs, $params];
 
         if ($times > 0) {
@@ -201,7 +209,7 @@ class TimerManager extends AbstractManager
     }
 
     /**
-     * @param int $timerId
+     * @param int   $timerId
      * @param mixed $params
      * @return bool
      */
@@ -215,7 +223,7 @@ class TimerManager extends AbstractManager
             return false;
         }
 
-        $handler = $timer[self::IDX_HANDLER];
+        $handler  = $timer[self::IDX_HANDLER];
         $maxTimes = $timer[self::IDX_TIMES];
 
         // 停止的任务
@@ -250,7 +258,7 @@ class TimerManager extends AbstractManager
     }
 
     /**
-     * @param string $name
+     * @param string   $name
      * @param null|int $index The index {@see self::IDX_*}
      * @return array|mixed
      */

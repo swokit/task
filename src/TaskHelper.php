@@ -57,7 +57,7 @@ final class TaskHelper
     }
 
     /**
-     * @param $obj
+     * @param       $obj
      * @param array $config
      */
     public static function initObject($obj, array $config): void
@@ -75,7 +75,7 @@ final class TaskHelper
 
     /**
      * @param callable $cb
-     * @param array ...$args
+     * @param array    ...$args
      * @return mixed
      */
     public static function call(callable $cb, ...$args)
@@ -102,11 +102,11 @@ final class TaskHelper
     }
 
     /**
-     * @param string $command
+     * @param string               $command
      * @param null|string|resource $output
      * - string     It is log file path
      * - resource   It is opened file handle
-     * @param string|null $user
+     * @param string|null          $user
      * @return string
      */
     public static function exec(string $command, $output = null, string $user = null): string
@@ -116,7 +116,7 @@ final class TaskHelper
 
     /**
      * @param string $dir
-     * @param int $mode
+     * @param int    $mode
      * @throws \RuntimeException
      */
     public static function mkdir(string $dir, int $mode = 0775): void

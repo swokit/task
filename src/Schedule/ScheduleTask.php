@@ -53,25 +53,25 @@ class ScheduleTask extends BaseTask implements ScheduleTaskInterface
      * @var array
      */
     protected $options = [
-        'jobClass' => 'Jobby\BackgroundJob',
-        'recipients' => null,
-        'mailer' => 'sendmail',
-        'maxRuntime' => null,
-        'smtpHost' => null,
-        'smtpPort' => 25,
-        'smtpUsername' => null,
-        'smtpPassword' => null,
-        'smtpSender' => '',
+        'jobClass'       => 'Jobby\BackgroundJob',
+        'recipients'     => null,
+        'mailer'         => 'sendmail',
+        'maxRuntime'     => null,
+        'smtpHost'       => null,
+        'smtpPort'       => 25,
+        'smtpUsername'   => null,
+        'smtpPassword'   => null,
+        'smtpSender'     => '',
         'smtpSenderName' => 'jobby',
-        'smtpSecurity' => null,
-        'runUser' => null, // www
-        'environment' => 'pdt',
-        'runOnHost' => 'localhost',
-        'output' => null,
-        'dateFormat' => 'Y-m-d H:i:s',
-        'enabled' => true,
-        'haltDir' => null,
-        'debug' => false,
+        'smtpSecurity'   => null,
+        'runUser'        => null, // www
+        'environment'    => 'pdt',
+        'runOnHost'      => 'localhost',
+        'output'         => null,
+        'dateFormat'     => 'Y-m-d H:i:s',
+        'enabled'        => true,
+        'haltDir'        => null,
+        'debug'          => false,
     ];
 
     /**
@@ -137,7 +137,7 @@ class ScheduleTask extends BaseTask implements ScheduleTaskInterface
     protected function runFile()
     {
         // Start execution. Run in foreground (will block).
-        $user = $this->options['runUser'];
+        $user    = $this->options['runUser'];
         $command = $this->options['command'];
 
         TaskHelper::exec($command, $this->getLogfile(), $user);

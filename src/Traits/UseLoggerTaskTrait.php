@@ -21,7 +21,7 @@ trait UseLoggerTaskTrait
 
     /**
      * @param string $msg
-     * @param array $data
+     * @param array  $data
      */
     protected function debug(string $msg, array $data = []): void
     {
@@ -30,7 +30,7 @@ trait UseLoggerTaskTrait
 
     /**
      * @param string $msg
-     * @param array $data
+     * @param array  $data
      */
     protected function info(string $msg, array $data = []): void
     {
@@ -38,7 +38,7 @@ trait UseLoggerTaskTrait
     }
 
     /**
-     * @param $msg
+     * @param       $msg
      * @param array $data
      */
     protected function err(string $msg, array $data = []): void
@@ -48,7 +48,7 @@ trait UseLoggerTaskTrait
 
     /**
      * @param string $msg
-     * @param array $data
+     * @param array  $data
      * @param string $type
      */
     protected function log(string $msg, array $data = [], string $type = 'info'): void
